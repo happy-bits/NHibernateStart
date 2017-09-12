@@ -1,0 +1,19 @@
+# folders
+
+bin
+obj
+packages
+.vs
+**/wwwroot/lib/
+**/LogFiles
+
+# files
+
+*.user
+*.suo
+*.log
+
+# specific files
+
+project.lock.json
+
