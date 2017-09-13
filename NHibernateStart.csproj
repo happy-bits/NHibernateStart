@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Customer.cs" />
+    <Content Include="Domain\DomainExample.cs.txt" />
+    <Compile Include="Mapping\MapExample.cs.txt" />
     <Compile Include="Mapping\NHibernateMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
