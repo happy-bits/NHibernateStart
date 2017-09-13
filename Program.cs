@@ -21,7 +21,7 @@ namespace NHibernateStart
                 session.Delete(c);
             }
 
-            // Save one customer
+            // Save three customer
 
             var customer1 = new Customer
             {
