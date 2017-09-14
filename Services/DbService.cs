@@ -3,6 +3,7 @@ using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Dialect;
 using NHibernate.Mapping.ByCode;
+using NHibernate.Tool.hbm2ddl;
 using NHibernateStart.Mapping;
 using System;
 using System.Reflection;
@@ -16,7 +17,7 @@ namespace NHibernateStart.Services
             Configuration cfg = new Configuration()
                            .DataBaseIntegration(db =>
                            {
-                               db.ConnectionString = @"Server = (localdb)\mssqllocaldb; Database = CustomerRegister; Trusted_Connection = True;";
+                               db.ConnectionString = @"Server = (localdb)\mssqllocaldb; Database = LibraryDb; Trusted_Connection = True;";
                                db.Dialect<MsSql2008Dialect>();
                            });
 
@@ -28,6 +29,14 @@ namespace NHibernateStart.Services
             cfg.AddMapping(mapping);
 
             return cfg;
+        }
+
+        public static void CreateDatabase()
+        {
+            // Skapa databas utifrån mappningsfilen
+            var se = new SchemaExport(Configure());
+
+            se.Execute(true, true, false);
         }
 
         public static ISession OpenSession()
