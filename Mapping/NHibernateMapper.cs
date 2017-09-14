@@ -26,6 +26,23 @@ namespace NHibernateStart.Mapping
             {
                 e.Id(p => p.Id, p=>p.Generator(Generators.GuidComb));
                 e.Property(p => p.Title);
+
+                e.ManyToOne(p => p.Library, mapper =>
+                {
+                    // Ange namn på kolumnen som pekar på pappan
+                    mapper.Column("LibraryId");
+
+                    // Valfritt om du sätter "NotNullable(true)" eller "NotNullable(false)". (false är default). 
+                    // false = BlogPostId kan vara null
+                    // true =  BlogPostId får inte vara null
+
+                    //mapper.NotNullable(true);
+
+                    // Sätt Cascade.None här vid ManyToOne. (annars tas bloggposten bort när vi tar bort en kommentar = inte bra)
+                    // (Cascade.None är default)
+
+                    mapper.Cascade(Cascade.None);
+                });
             });
 
         }
@@ -50,7 +67,7 @@ namespace NHibernateStart.Mapping
                     p.Cascade(Cascade.All);
 
                     // Ange namnet på kolumnen här som referar till pappan
-                    p.Key(k => k.Column(col => col.Name("LibraryId777")));
+                    p.Key(k => k.Column(col => col.Name("LibraryId")));
                 }, p => p.OneToMany());
 
             });
@@ -60,6 +77,3 @@ namespace NHibernateStart.Mapping
         }
     }
 }
-
-//// En bloggpost kan ha flera kommentarer
-

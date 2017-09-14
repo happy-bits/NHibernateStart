@@ -36,6 +36,7 @@ namespace NHibernateStart.Services
             // Skapa databas utifrån mappningsfilen
             var se = new SchemaExport(Configure());
 
+            se.SetOutputFile("database-schema.sql");
             se.Execute(true, true, false);
         }
 
